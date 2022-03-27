@@ -36,7 +36,7 @@ func (t *GoroutinePool) createGoroutine() {
 			for {
 				select {
 				case task := <-taskChan:
-					task.running()
+					task.Running()
 				}
 			}
 		}(t.taskChan)
