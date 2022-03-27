@@ -10,7 +10,7 @@ import (
 type GetHtml struct {
 }
 
-func (t *GetHtml) running() {
+func (t *GetHtml) Running() {
 	fmt.Println("开始执行获取html内容任务")
 	c := http.Client{}
 	res, _ := c.Get("https://www.baidu.com")
@@ -20,10 +20,9 @@ func (t *GetHtml) running() {
 }
 
 func TestPool(t *testing.T) {
-	pool := &GoroutinePool{num: 100}
-	pool.start()
-	pool.addTask(&GetHtml{})
-
+	pool := New(100)
+	pool.Start()
+	pool.AddTask(&GetHtml{})
 	// 让主协程保持等待，不退出
 	select {}
 }
