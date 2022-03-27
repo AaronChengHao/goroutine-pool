@@ -61,7 +61,9 @@ func (t *GetHtml) running() {
 func main() {
 	pool := &GoroutinePool{num: 100}
 	pool.start()
-	// - 投递任务
+	// 投递任务
 	pool.taskChan <- &GetHtml{}
+
+	// 让主协程保持等待，不退出
 	select {}
 }
