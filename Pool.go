@@ -11,7 +11,7 @@ type Task interface {
 
 // GoroutinePool 协程池对象
 type GoroutinePool struct {
-	num      int
+	Num      int
 	taskChan chan Task
 }
 
@@ -31,7 +31,7 @@ func (t *GoroutinePool) start() {
 
 // 创建协程
 func (t *GoroutinePool) createGoroutine() {
-	for i := 1; i <= t.num; i++ {
+	for i := 1; i <= t.Num; i++ {
 		go func(taskChan chan Task) {
 			for {
 				select {
