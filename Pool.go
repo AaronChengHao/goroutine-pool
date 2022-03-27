@@ -15,8 +15,8 @@ type GoroutinePool struct {
 	taskChan chan Task
 }
 
-// 启动协程池
-func (t *GoroutinePool) start() {
+// Start 启动协程池
+func (t *GoroutinePool) Start() {
 	t.taskChan = make(chan Task)
 	// - 根据预设的数值启动相应数量的协程
 	t.createGoroutine()
