@@ -43,7 +43,7 @@ func (t *GoroutinePool) createGoroutine() {
 	}
 }
 
-// 添加任务
-func (t *GoroutinePool) addTask(task Task)  {
+// AddTask 添加任务
+func (t *GoroutinePool) AddTask(task Task)  {
 	t.taskChan <- task
 }
