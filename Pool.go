@@ -1,8 +1,6 @@
-package main
+package goroutinepool
 
 import (
-	"fmt"
-	"net/http"
 	"time"
 )
 
@@ -45,25 +43,7 @@ func (t *GoroutinePool) createGoroutine() {
 	}
 }
 
-// GetHtml 任务对象
-type GetHtml struct {
-}
-
-func (t *GetHtml) running() {
-	fmt.Println("开始执行获取html内容任务")
-	c := http.Client{}
-	res, _ := c.Get("https://www.baidu.com")
-	content := make([]byte, 1024)
-	res.Body.Read(content)
-	fmt.Println(string(content))
-}
-
-func main() {
-	pool := &GoroutinePool{num: 100}
-	pool.start()
-	// 投递任务
-	pool.taskChan <- &GetHtml{}
-
-	// 让主协程保持等待，不退出
-	select {}
+// 添加任务
+func (t *GoroutinePool) addTask(task Task)  {
+	t.taskChan <- task
 }
